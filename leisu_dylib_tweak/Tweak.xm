@@ -162,7 +162,6 @@ static void hookAdClass(Class cls) {
         if (!isAdMethod(sel)) continue;
 
         // 只hook实例方法 (类方法走 object_getClass(cls))
-        IMP origImp = method_getImplementation(methods[i]);
         const char *returnType = method_copyReturnType(methods[i]);
         char firstChar = returnType ? returnType[0] : 'v';
         free((void *)returnType);
