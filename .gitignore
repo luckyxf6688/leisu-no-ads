@@ -1,0 +1,9 @@
+*.ipa
+*.dylib
+*.zip
+node_modules/
+patched_app/
+check_ipa/
+verify_ipa/
+ipa_extract/
+.DS_Store

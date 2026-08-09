@@ -1,0 +1,45 @@
+# 雷速体育去广告 dylib 编译
+
+name: Build iPAPatcher dylib
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Theos dependencies
+        run: |
+          brew install ldid make
+
+      - name: Setup Theos
+        run: |
+          export THEOS=/opt/theos
+          if [ ! -d "$THEOS" ]; then
+            git clone --depth 1 https://github.com/theos/theos.git $THEOS
+          fi
+          echo "THEOS=$THEOS" >> $GITHUB_ENV
+
+      - name: Build dylib
+        run: |
+          cd leisu_dylib_tweak
+          gmake
+
+      - name: Show result
+        run: |
+          echo "=== dylib 位置 ==="
+          find . -name "*.dylib" -type f 2>/dev/null
+          echo "=== 文件信息 ==="
+          find . -name "*.dylib" -type f -exec file {} \;
+          find . -name "*.dylib" -type f -exec ls -lh {} \;
+
+      - name: Upload dylib artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: leisu_no_ads_dylib
+          path: "**/*.dylib"
