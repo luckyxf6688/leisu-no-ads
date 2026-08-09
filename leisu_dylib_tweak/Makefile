@@ -13,5 +13,6 @@ leisu_no_ads_FILES = Tweak.xm
 leisu_no_ads_CFLAGS = -fobjc-arc
 leisu_no_ads_FRAMEWORKS = Foundation UIKit
 leisu_no_ads_INSTALL_PATH = /usr/lib
+leisu_no_ads_LDFLAGS = -not_for_dyld_shared_cache
 
 include $(THEOS_MAKE_PATH)/library.mk
