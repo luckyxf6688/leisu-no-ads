@@ -36,20 +36,12 @@ jobs:
           cd leisu_dylib_tweak
           gmake
 
-      - name: Show result
+      - name: Copy dylib for upload
         run: |
-          echo "=== dylib 位置 ==="
-          find . -name "*.dylib" -type f 2>/dev/null
-          echo "=== 文件信息 ==="
-          find . -name "*.dylib" -type f -exec file {} \;
-          find . -name "*.dylib" -type f -exec ls -lh {} \;
-          echo "=== artifact upload will use ==="
           find . -name "*.dylib" -type f
-          # The dylib is at relative path from runner root
-          DYLIB_PATH=\"\$(find . -name '*.dylib' -type f | head -1)\"
-          echo \"DYLIB_PATH=\$DYLIB_PATH\"
-          cp \"\$DYLIB_PATH\" ./leisu_no_ads.dylib
+          cp leisu_dylib_tweak/.theos/obj/debug/leisu_no_ads.dylib ./leisu_no_ads.dylib
           ls -lh ./leisu_no_ads.dylib
+          file ./leisu_no_ads.dylib
 
       - name: Upload dylib artifact
         uses: actions/upload-artifact@v4
