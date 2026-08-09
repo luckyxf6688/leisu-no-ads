@@ -43,6 +43,8 @@ jobs:
           echo "=== 文件信息 ==="
           find . -name "*.dylib" -type f -exec file {} \;
           find . -name "*.dylib" -type f -exec ls -lh {} \;
+          echo "=== artifact upload will use ==="
+          find . -name "*.dylib" -type f
 
       - name: Upload dylib artifact
         uses: actions/upload-artifact@v4
