@@ -20,9 +20,10 @@ jobs:
           export THEOS=$HOME/theos
           if [ ! -d "$THEOS" ]; then
             git clone --depth 1 https://github.com/theos/theos.git $THEOS
-            cd $THEOS
-            git clone --depth 1 https://github.com/theos/sdks.git sdks
           fi
+          cd $THEOS
+          rm -rf sdks
+          git clone --depth 1 https://github.com/theos/sdks.git sdks
           echo "THEOS=$THEOS" >> $GITHUB_ENV
 
       - name: Build dylib
