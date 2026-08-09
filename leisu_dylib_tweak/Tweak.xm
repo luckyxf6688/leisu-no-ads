@@ -344,6 +344,39 @@ static void delayedScan(void) {
 - (void)loadAd { }
 %end
 
+// ⭐ 雷速开屏广告 — 之前漏了!
+%hook LSCodeSplashAd
+- (instancetype)init { return nil; }
+- (instancetype)initWithFrame:(CGRect)frame { return nil; }
+- (instancetype)initWithCoder:(NSCoder *)coder { return nil; }
+- (void)loadSplashAdWithPlacementID:(NSString *)pid { }
+- (void)loadSplashAd { }
+- (void)showSplashAd { }
+- (void)showSplash { }
+- (void)show { }
+- (void)showInWindow:(UIWindow *)w { }
+- (void)dismiss { }
+- (void)loadAd { }
+- (void)render { }
+- (void)display { }
+%end
+
+// ⭐ 穿山甲开屏加载器
+%hook CSJSplashAdLoader
+- (instancetype)init { return nil; }
+- (void)loadSplashAd { }
+- (void)loadAd { }
+- (void)showSplashAd { }
+%end
+
+// ⭐ 美数开屏管理器
+%hook MSSplashAdLoaderManager
++ (instancetype)sharedInstance { return nil; }
+- (void)loadSplashAd { }
+- (void)showSplashAd { }
+- (void)loadAd { }
+%end
+
 // ═══════════════════════════════
 // Hook UIWindow: 拦截广告view加在window上
 // ═══════════════════════════════
