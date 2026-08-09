@@ -1,5 +1,4 @@
 *.ipa
-*.dylib
 *.zip
 node_modules/
 patched_app/
