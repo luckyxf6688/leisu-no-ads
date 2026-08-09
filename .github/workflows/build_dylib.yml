@@ -25,6 +25,11 @@ jobs:
           rm -rf sdks
           git clone --depth 1 https://github.com/theos/sdks.git sdks
           echo "THEOS=$THEOS" >> $GITHUB_ENV
+          # Run theos update to install vendor libs
+          $THEOS/bin/update-theos
+          # List available SDKs to verify
+          ls -la $THEOS/sdks/
+          ls -la $THEOS/vendor/
 
       - name: Build dylib
         run: |
