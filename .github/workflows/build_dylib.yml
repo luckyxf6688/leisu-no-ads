@@ -1,5 +1,3 @@
-# 雷速体育去广告 dylib 编译
-
 name: Build iPAPatcher dylib
 
 on:
@@ -19,7 +17,7 @@ jobs:
 
       - name: Setup Theos
         run: |
-          export THEOS=/opt/theos
+          export THEOS=$HOME/theos
           if [ ! -d "$THEOS" ]; then
             git clone --depth 1 https://github.com/theos/theos.git $THEOS
           fi
