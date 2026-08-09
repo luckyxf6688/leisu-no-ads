@@ -45,9 +45,14 @@ jobs:
           find . -name "*.dylib" -type f -exec ls -lh {} \;
           echo "=== artifact upload will use ==="
           find . -name "*.dylib" -type f
+          # The dylib is at relative path from runner root
+          DYLIB_PATH=\"\$(find . -name '*.dylib' -type f | head -1)\"
+          echo \"DYLIB_PATH=\$DYLIB_PATH\"
+          cp \"\$DYLIB_PATH\" ./leisu_no_ads.dylib
+          ls -lh ./leisu_no_ads.dylib
 
       - name: Upload dylib artifact
         uses: actions/upload-artifact@v4
         with:
           name: leisu_no_ads_dylib
-          path: "**/*.dylib"
+          path: leisu_no_ads.dylib
